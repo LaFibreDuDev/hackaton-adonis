@@ -4,3 +4,15 @@ services:
       context: .
       dockerfile: ./Dockerfile
     container_name: backend
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - PORT=${PORT}
+      - APP_KEY=${APP_KEY}
+      - HOST=${HOST}
+      - LOG_LEVEL=${LOG_LEVEL}
+      - SESSION_DRIVER=${SESSION_DRIVER}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}
