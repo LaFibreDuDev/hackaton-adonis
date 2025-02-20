@@ -10,6 +10,8 @@ services:
       MYSQL_PASSWORD: example
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - dokploy-network
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: phpmyadmin
@@ -18,6 +20,8 @@ services:
       - 8080:80
     environment:
       - PMA_ARBITRARY=1
+    networks:
+      - dokploy-network
   backend:
     build:
       context: .
@@ -39,6 +43,12 @@ services:
       - DB_USER=example
       - DB_PASSWORD=example
       - DB_DATABASE=example
+    networks:
+      - dokploy-network
 
 volumes:
   mysql_data:
+
+networks:
+  dokploy-network:
+    external: true
