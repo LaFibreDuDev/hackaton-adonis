@@ -9,5 +9,6 @@
       Hello world!
     </h1>
     <button class="btn btn-primary btn-wide">Envoyer un formulaire</button>
+    <p>Un petit test</p>
   </div>
 </template>
