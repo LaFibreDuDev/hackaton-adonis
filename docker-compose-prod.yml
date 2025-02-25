@@ -5,14 +5,23 @@ services:
       dockerfile: ./Dockerfile
     container_name: backend
     environment:
-      - NODE_ENV=${NODE_ENV}
-      - PORT=${PORT}
-      - APP_KEY=${APP_KEY}
-      - HOST=${HOST}
-      - LOG_LEVEL=${LOG_LEVEL}
-      - SESSION_DRIVER=${SESSION_DRIVER}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_DATABASE=${DB_DATABASE}
+      - NODE_ENV=production
+      - PORT=3333
+      - APP_KEY=ZS2g54yredyy7kC2kic6L7t4s1Y-NrOU
+      - HOST=0.0.0.0
+      - LOG_LEVEL=info
+      - SESSION_DRIVER=cookie
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=example
+      - DB_PASSWORD=example
+      - DB_DATABASE=example
+    networks:
+      - dokploy-network
+
+volumes:
+  mysql_data:
+
+networks:
+  dokploy-network:
+    external: true
