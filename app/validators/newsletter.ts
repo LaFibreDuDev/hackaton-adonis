@@ -8,12 +8,9 @@ const properties = {
     .trim()
     .minLength(4)
     .maxLength(256)
-    .unique(async (db, value, field) => {
-      const emailExists = await db.from('newsletters').where('email', value).first()
-      if (emailExists) {
-        field.report('', 'unique', field)
-      }
-      return !emailExists
+    .unique({
+      table: 'newsletters',
+      column: 'email',
     })
     .normalizeEmail({
       all_lowercase: true,
