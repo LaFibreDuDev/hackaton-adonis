@@ -1,16 +1,13 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3'
 import { useForm } from '@inertiajs/vue3'
+import Layout from '~/components/Layout.vue'
 const form = useForm({
   email: null,
 })
 </script>
 
 <template>
-  <Head title="Homepage" />
-  <div
-    class="min-h-screen bg-gradient-to-br from-primary to-secondary flex flex-col justify-center items-center p-4"
-  >
+  <Layout title="Page d'accueil">
     <div class="card w-full max-w-2xl bg-base-100 shadow-xl">
       <div class="card-body text-center">
         <h1 class="text-4xl font-bold mb-2">Hackaton du mois de Mars 2025</h1>
@@ -32,5 +29,5 @@ const form = useForm({
         </form>
       </div>
     </div>
-  </div>
+  </Layout>
 </template>

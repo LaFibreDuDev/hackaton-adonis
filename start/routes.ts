@@ -9,10 +9,11 @@
 
 import router from '@adonisjs/core/services/router'
 
-const HomeController = () => import('#controllers/home_controller')
+const PageController = () => import('#controllers/page_controller')
 const NewsletterController = () => import('#controllers/newsletters_controller')
 
-router.get('/', [HomeController, 'index']).as('home')
+router.get('/', [PageController, 'home']).as('home')
+router.get('/privacy_policy', [PageController, 'privacyPolicy']).as('privacy_policy')
 router.post('/newsletter', [NewsletterController, 'store']).as('newsletter.store')
 router
   .get('/newsletter/confirmation', [NewsletterController, 'confirmation'])

@@ -18,6 +18,14 @@ services:
       - 8080:80
     environment:
       - PMA_ARBITRARY=1
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    restart: always
+    ports:
+      - '8025:8025'
+    environment:
+      MAILHOG_SMTP_BIND_ADDR: '0.0.0.0:1025'
   backend:
     image: node:23-alpine
     container_name: backend
@@ -28,7 +36,7 @@ services:
       - '3333:3333'
     depends_on:
       - mysql
-    command: ["/bin/sh", "-c", "npm run dev"]
+    command: ['/bin/sh', '-c', 'npm run dev']
     environment:
       - HOST=0.0.0.0
       - DB_HOST=mysql
