@@ -1,3 +1,4 @@
+import { mailjetTransport } from '#mails/index'
 import env from '#start/env'
 import { defineConfig, transports } from '@adonisjs/mail'
 
@@ -22,6 +23,12 @@ const mailConfig = defineConfig({
         user: env.get('SMTP_USERNAME'),
         pass: env.get('SMTP_PASSWORD'),
       }, */
+    }),
+    mailjet: mailjetTransport({
+      auth: {
+        apiKey: env.get('MAILJET_API_KEY'),
+        apiSecret: env.get('MAILJET_API_SECRET'),
+      },
     }),
   },
 })

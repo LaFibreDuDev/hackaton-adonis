@@ -43,4 +43,12 @@ export default await Env.create(new URL('../', import.meta.url), {
   */
   SMTP_HOST: Env.schema.string(),
   SMTP_PORT: Env.schema.string(),
+
+  /*
+  |----------------------------------------------------------
+  | Variables for configuring the mailjet package
+  |----------------------------------------------------------
+  */
+  MAILJET_API_KEY: Env.schema.string(),
+  MAILJET_API_SECRET: Env.schema.string(),
 })

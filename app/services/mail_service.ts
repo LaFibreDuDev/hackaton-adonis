@@ -1,15 +1,22 @@
 import Newsletter from '#models/newsletter'
 import { inject } from '@adonisjs/core'
 import router from '@adonisjs/core/services/router'
+import { Message } from '@adonisjs/mail'
 import mail from '@adonisjs/mail/services/main'
 
 @inject()
 export class MailService {
   private baseUrl = 'http://localhost:3333'
   private from = 'info@hackatruite.org'
+  private mailTransport: 'smtp' | 'mailjet' = 'smtp'
 
   constructor() {}
 
+  private addFrom(message: Message) {
+    if (this.mailTransport === 'smtp') {
+      message.from(this.from)
+    }
+  }
   private generateConfirmationUrl(validationToken: string) {
     // TODO générer un token avec une date (compléter makeSigned)
     return router
@@ -32,10 +39,10 @@ export class MailService {
   }
 
   async confirmationEmail(newsletter: Newsletter) {
-    await mail.send((message) => {
+    await mail.use(this.mailTransport).send((message) => {
+      this.addFrom(message)
       message
         .to(newsletter.email)
-        .from(this.from)
         .subject('Confirmation de votre inscription - Plateforme Hackatruite')
         .htmlView('emails/verify_email', {
           privacy_policy_link: `${this.baseUrl}/privacy_policy`,
@@ -47,10 +54,10 @@ export class MailService {
     })
   }
   async validationEmail(newsletter: Newsletter) {
-    await mail.send((message) => {
+    await mail.use(this.mailTransport).send((message) => {
+      this.addFrom(message)
       message
         .to(newsletter.email)
-        .from(this.from)
         .subject('Inscription confirmée - Plateforme Hackatruite')
         .htmlView('emails/validate_email', {
           privacy_policy_link: `${this.baseUrl}/privacy_policy`,
@@ -61,10 +68,10 @@ export class MailService {
     })
   }
   async unsubscribeEmail(newsletter: Newsletter) {
-    await mail.send((message) => {
+    await mail.use(this.mailTransport).send((message) => {
+      this.addFrom(message)
       message
         .to(newsletter.email)
-        .from(this.from)
         .subject('Désinscription confirmée - Plateforme Hackatruite')
         .htmlView('emails/unsubscribe_email', {
           privacy_policy_link: `${this.baseUrl}/privacy_policy`,
