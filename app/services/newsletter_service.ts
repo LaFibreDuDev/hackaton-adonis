@@ -1,7 +1,10 @@
 import Newsletter from '#models/newsletter'
+import { ResultOf } from '#types/common'
 import { inject } from '@adonisjs/core'
 import { Hash } from '@adonisjs/core/hash'
 import { DateTime } from 'luxon'
+
+export type NewsletterListQueryResult = ResultOf<NewsletterService, 'findAll'>
 
 interface NewsletterPayload {
   email: string
@@ -48,5 +51,9 @@ export class NewsletterService {
     newsletter.unsubscribeToken = ''
     newsletter.validationToken = ''
     await newsletter.save()
+  }
+
+  async findAll() {
+    return await Newsletter.query().orderBy('email', 'asc')
   }
 }
