@@ -1,0 +1,55 @@
+@mjml()
+  <mjml>
+    <mj-head>
+      <mj-title>
+        Désinscription confirmée - Plateforme Hackatruite
+      </mj-title>
+      <mj-font name="Roboto" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+      <mj-attributes>
+        <mj-all font-family="Roboto, Arial, sans-serif" />
+      </mj-attributes>
+      <mj-style>
+        .link-nostyle { color: inherit; text-decoration: none }
+        .footer-link { color: #888888; text-decoration: none }
+      </mj-style>
+    </mj-head>
+    <mj-body background-color="#F4F4F4">
+      <mj-section background-color="#ffffff" padding-top="0">
+        <mj-column>
+          <mj-spacer height="20px" />
+          <mj-text font-size="20px" font-weight="bold" align="center" color="#2525e6">
+            Désinscription confirmée à l'évènement
+          </mj-text>
+          <mj-text font-size="16px" line-height="24px" padding-top="20px">
+            Bonjour,
+          </mj-text>
+          <mj-text font-size="16px" line-height="24px">
+            Nous vous confirmons votre désinscription à la newsletter de l'évènement (Hackatruite).
+          </mj-text>
+
+          <mj-text font-size="16px" line-height="24px">
+            Cordialement,<br />
+            {{ author_names }}
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <mj-section background-color="#ffffff" padding-top="0">
+        <mj-column>
+          <mj-divider border-color="#EEEEEE" border-width="1px" padding-top="20px" padding-bottom="0" />
+        </mj-column>
+      </mj-section>
+
+      <mj-section background-color="#ffffff" padding-top="0">
+        <mj-column>
+          <mj-text font-size="12px" line-height="20px" color="#888888" align="center">
+            <a href="{{ privacy_policy_link }}" class="footer-link">Politique de confidentialité</a>
+          </mj-text>
+          <mj-text font-size="12px" line-height="20px" color="#888888" align="center">
+            © 2025 Plateforme Hackatruite. Tous droits réservés.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-body>
+  </mjml>
+@end

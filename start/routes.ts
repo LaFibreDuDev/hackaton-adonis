@@ -18,3 +18,9 @@ router.post('/newsletter', [NewsletterController, 'store']).as('newsletter.store
 router
   .get('/newsletter/confirmation', [NewsletterController, 'confirmation'])
   .as('newsletter.confirmation')
+router
+  .get('/newsletter/validate/:validationToken', [NewsletterController, 'validate'])
+  .as('newsletter.validate')
+router
+  .get('/newsletter/unsubscribe/:unsubscribeToken', [NewsletterController, 'unsubscribe'])
+  .as('newsletter.unsubscribe')
