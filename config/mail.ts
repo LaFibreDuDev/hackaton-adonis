@@ -1,4 +1,3 @@
-import { mailjetTransport } from '#mails/index'
 import env from '#start/env'
 import { defineConfig, transports } from '@adonisjs/mail'
 
@@ -18,17 +17,21 @@ const mailConfig = defineConfig({
        * Uncomment the auth block if your SMTP
        * server needs authentication
        */
-      /* auth: {
+      /*auth: {
         type: 'login',
         user: env.get('SMTP_USERNAME'),
         pass: env.get('SMTP_PASSWORD'),
-      }, */
+      },*/
     }),
-    mailjet: mailjetTransport({
+    /*mailjet: mailjetTransport({
       auth: {
         apiKey: env.get('MAILJET_API_KEY'),
         apiSecret: env.get('MAILJET_API_SECRET'),
       },
+    }),*/
+    resend: transports.resend({
+      key: env.get('RESEND_API_KEY'),
+      baseUrl: 'https://api.resend.com',
     }),
   },
 })

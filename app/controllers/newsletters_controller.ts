@@ -2,8 +2,6 @@ import { NewsletterService } from '#services/newsletter_service'
 import { createNewsletterValidator } from '#validators/newsletter'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
-import mail from '@adonisjs/mail/services/main'
-import router from '@adonisjs/core/services/router'
 import { MailService } from '#services/mail_service'
 
 @inject()

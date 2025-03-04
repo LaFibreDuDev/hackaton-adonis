@@ -7,14 +7,17 @@ import mail from '@adonisjs/mail/services/main'
 @inject()
 export class MailService {
   private baseUrl = 'http://localhost:3333'
-  private from = 'info@hackatruite.org'
-  private mailTransport: 'smtp' | 'mailjet' = 'smtp'
+  private from = {
+    address: 'contact@lafibredudev.com',
+    name: 'Contact Hackatruite',
+  }
+  private mailTransport: 'smtp' | 'resend' = 'resend'
 
   constructor() {}
 
   private addFrom(message: Message) {
-    if (this.mailTransport === 'smtp') {
-      message.from(this.from)
+    if (this.mailTransport === 'smtp' || this.mailTransport === 'resend') {
+      message.from(this.from.address, this.from.name)
     }
   }
   private generateConfirmationUrl(validationToken: string) {
