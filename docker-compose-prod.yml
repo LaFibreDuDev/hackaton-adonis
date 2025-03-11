@@ -16,6 +16,9 @@ services:
       - DB_USER=example
       - DB_PASSWORD=example
       - DB_DATABASE=example
+      - SMTP_HOST=localhost
+      - SMTP_PORT=1025
+      - RESEND_API_KEY=${RESEND_API_KEY}
     networks:
       - dokploy-network
 
