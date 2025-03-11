@@ -17,6 +17,7 @@ const AuthController = () => import('#controllers/auth_controller')
 
 router.get('/', [PageController, 'home']).as('home')
 router.get('/privacy_policy', [PageController, 'privacyPolicy']).as('privacy_policy')
+router.get('/message/test', [PageController, 'alert']).as('alert')
 router.post('/newsletter', [NewsletterController, 'store']).as('newsletter.store')
 router
   .get('/newsletter/confirmation', [NewsletterController, 'confirmation'])

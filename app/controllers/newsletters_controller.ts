@@ -19,12 +19,7 @@ export default class NewslettersController {
   }
 
   async confirmation({ inertia }: HttpContext) {
-    return inertia.render('alert', {
-      title: "Confirmation d'inscription",
-      message:
-        "Votre inscription à l'évènement a bien été prise en compte ! Vous devriez recevoir un mail de confirmation à cet effet !",
-      alertType: 'success',
-    })
+    return inertia.render('test/alert/sent_confirmation_link')
   }
 
   async validate({ request, inertia }: HttpContext) {
@@ -37,18 +32,10 @@ export default class NewslettersController {
       if (newsletter) {
         await this.newsletterService.validateNewsletter(newsletter)
         await this.mailService.validationEmail(newsletter)
-        return inertia.render('alert', {
-          title: "Validation d'inscription",
-          message: `Votre inscription à la newsletter est validée avec l'email suivant : ${newsletter.email}`,
-          alertType: 'success',
-        })
+        return inertia.render('test/alert/confirmation')
       }
     } catch (error) {
-      return inertia.render('alert', {
-        title: 'Erreur lors de la validation',
-        message: `Ce lien de validation à la newsletter n'est pas valide ! Veuillez contacter un administrateur !`,
-        alertType: 'error',
-      })
+      return inertia.render('test/alert/error_link')
     }
   }
 
@@ -61,18 +48,10 @@ export default class NewslettersController {
       if (newsletter) {
         await this.newsletterService.unsubscribeNewsletter(newsletter)
         await this.mailService.unsubscribeEmail(newsletter)
-        return inertia.render('alert', {
-          title: 'Confirmation de désinscription',
-          message: `Votre demande de désinscription à la newsletter a bien été prise en compte avec l'email suivant : ${newsletter.email}`,
-          alertType: 'success',
-        })
+        return inertia.render('test/alert/unsubscribe')
       }
     } catch (error) {
-      return inertia.render('alert', {
-        title: 'Erreur lors de la déinscription',
-        message: `Ce lien de désinscription à la newsletter n'est pas valide ! Veuillez contacter un administrateur !`,
-        alertType: 'error',
-      })
+      return inertia.render('test/alert/error_link')
     }
   }
 }
