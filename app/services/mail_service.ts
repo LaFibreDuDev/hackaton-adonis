@@ -1,4 +1,5 @@
 import Newsletter from '#models/newsletter'
+import env from '#start/env'
 import { inject } from '@adonisjs/core'
 import router from '@adonisjs/core/services/router'
 import { Message } from '@adonisjs/mail'
@@ -6,7 +7,7 @@ import mail from '@adonisjs/mail/services/main'
 
 @inject()
 export class MailService {
-  private baseUrl = 'http://localhost:3333'
+  private baseUrl = env.get('APP_URL')
   private from = {
     address: 'contact@lafibredudev.com',
     name: 'Contact Hackatruite',
