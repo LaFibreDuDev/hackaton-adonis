@@ -60,4 +60,7 @@ export default await Env.create(new URL('../', import.meta.url), {
   */
   //MAILJET_API_KEY: Env.schema.string(),
   //MAILJET_API_SECRET: Env.schema.string(),
+
+  ADMIN_EMAIL: Env.schema.string(),
+  ADMIN_PASSWORD: Env.schema.string(),
 })
